@@ -6,6 +6,7 @@ function ShareProfile(props) {
   const { data, userCode } = props;
 
   if (!userCode) {
+    console.log('usercode not found')
     return <NotFound />;
   }
   return (
