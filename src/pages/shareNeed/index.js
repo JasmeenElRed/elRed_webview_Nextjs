@@ -17,7 +17,7 @@ function ShareNeed(props) {
         {data?.otherTags?.length && (
           <meta
             property="og:description"
-            content={`Other Tags: ${data?.otherTags?.join(", ")}`}
+            content={`Tags: ${data?.otherTags?.join(", ")}`}
             key="description"
           />
         )}
