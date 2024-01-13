@@ -1,9 +1,19 @@
+import { useEffect } from "react";
 import { baseURL, webviewURL } from "@/config";
 import Head from "next/head";
 import NotFound from "@/component/notFound";
 
 function ShareProfile(props) {
   const { data, userCode } = props;
+
+  useEffect(() => {
+    window?.addEventListener('message', (event) => {
+      if (event?.data?.message === 'openDialPad') {
+        const { phoneNumber } = event?.data;
+        window?.open(`tel:${phoneNumber}`, '_self');
+      }
+    });
+  }, []);
 
   if (!userCode) {
     return <NotFound />;
