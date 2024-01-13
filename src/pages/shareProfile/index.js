@@ -18,7 +18,6 @@ function ShareProfile(props) {
   if (!userCode) {
     return <NotFound />;
   }
-  console.log('shareProfile component')
   return (
     <>
       <Head>
