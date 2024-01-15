@@ -6,6 +6,15 @@ import NotFound from "@/component/notFound";
 function ShareCard(props) {
   const { data, userCode } = props;
 
+  useEffect(() => {
+    window?.addEventListener('message', (event) => {
+      if (event?.data?.message === 'openDialPad') {
+        const { phoneNumber } = event?.data;
+        window?.open(`tel:${phoneNumber}`, '_self');
+      }
+    });
+  }, []);
+
   if (!userCode) {
     return <NotFound />;
   }
