@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { baseURL, webviewURL } from "@/config";
 import Head from "next/head";
 
