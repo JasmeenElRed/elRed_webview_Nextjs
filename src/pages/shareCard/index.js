@@ -22,7 +22,6 @@ function ShareCard(props) {
   return (
     <>
       <Head>
-        <link rel="icon" href="/favicon.ico" />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="300" />
         <meta property="og:image:height" content="300" />

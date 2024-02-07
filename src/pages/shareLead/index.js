@@ -11,7 +11,6 @@ function ShareNeed(props) {
   return (
     <>
       <Head>
-        <link rel="icon" href="/favicon.ico" />
         <meta property="og:title" content={data?.leadTitle ?? ""} key="title" />
         <meta
           property="og:description"

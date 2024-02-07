@@ -21,7 +21,6 @@ function ShareProfile(props) {
   return (
     <>
       <Head>
-        <link rel="icon" href="/favicon.ico" />
         <meta
           property="og:title"
           content={data?.profileTitle ?? ""}
