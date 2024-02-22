@@ -53,6 +53,7 @@ export async function getServerSideProps({ res, query }) {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+        'X-ElRed-Test':  Math.random() > 0.5 ? 'elRed-57c191ca14f63283': 'elRed-6d41c61445eb8f56',
       },
     }
   );
