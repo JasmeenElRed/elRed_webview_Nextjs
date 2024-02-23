@@ -52,43 +52,27 @@ function ShareProfile(props) {
   );
 }
 
-export async function getServerSideProps({ req, res, query }) {
+export async function getServerSideProps({ res, query }) {
   res.setHeader("Cache-Control", "no-store");
-  const headers = new Headers();
-  headers.append('Content-Type', 'application/json');
-  headers.append('Accept', "application/json");
-  headers.append('X-ElRed-Test', Math.random() > 0.5 ? 'elRed-57c191ca14f63283': 'elRed-6d41c61445eb8f56')
-
-  const requestOptions = {
-    cache: "no-cache",
-    method: 'POST',
-    headers: headers
-  };
-  
   const userCode = query.userCode ?? "";
 
-  const request = new Request(`${baseURL}noSessionPreviewCardScreenshot?userCode=${userCode}`, requestOptions);
+  console.log(
+    `${baseURL}noSessionPreviewCardScreenshot?userCode=${userCode}`,
+    "hehehe"
+  );
 
-
-  // const response = await fetch(
-  //   `${baseURL}noSessionPreviewCardScreenshot?userCode=${userCode}`,
-  //   {
-  //     cache: "no-cache",
-  //     method: "POST",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //       'X-ElRed-Test':  Math.random() > 0.5 ? 'elRed-57c191ca14f63283': 'elRed-6d41c61445eb8f56',
-  //     },
-  //   }
-  // );
-
-  const response = await fetch(request);
-  console.log("request ===========>", request.headers, "request ===========>")
-  console.log("response ===========>", response.headers, "response ===========>")
-
-  // console.log("request header after ===========>",req, req.headers,  'request header after')
-  // console.log("=============>" , response.headers, 'response header after')
+  const response = await fetch(
+    `${baseURL}noSessionPreviewCardScreenshot?userCode=${userCode}`,
+    {
+      cache: "no-cache",
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        'X-ElRed-Test':  Math.random() > 0.5 ? 'elRed-57c191ca14f63283': 'elRed-6d41c61445eb8f56',
+      },
+    }
+  );
 
   const data = await response.json();
   const result = data?.result && data?.result?.length && data?.result[0];
