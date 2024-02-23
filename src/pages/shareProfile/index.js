@@ -53,6 +53,7 @@ function ShareProfile(props) {
 }
 
 export async function getServerSideProps({ req, res, query }) {
+  console.log('Test URL')
   res.setHeader("Cache-Control", "no-store");
   // const headers = new Headers();
   // headers.append('Content-Type', 'application/json');
