@@ -53,6 +53,7 @@ function ShareProfile(props) {
 }
 
 export async function getServerSideProps({ res, query }) {
+  console.log('test url')
   res.setHeader("Cache-Control", "no-store");
   const userCode = query.userCode ?? "";
 
