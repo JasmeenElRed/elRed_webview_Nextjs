@@ -17,7 +17,7 @@ function DeleteUSerAccount() {
           allow="web-share"
           src="https://el-red-deleteuseraccount-dev.vercel.app/"
           className="iframe-cont"
-          title="Delete Elred User Account"
+          title=""
         ></iframe>
       </div>
     </>
