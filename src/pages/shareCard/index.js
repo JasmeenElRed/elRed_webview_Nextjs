@@ -38,7 +38,7 @@ function ShareCard(props) {
           allow="web-share"
           src={`${webviewURL}share-card?userCode=${userCode}`}
           className="iframe-cont"
-          title="W3Schools Free Online Web Tutorials"
+          title=""
         ></iframe>
       </div>
     </>
