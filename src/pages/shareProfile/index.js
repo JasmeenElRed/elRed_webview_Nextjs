@@ -1,14 +1,13 @@
 import { useEffect } from "react";
-import { baseURL, webviewURL, webviewNextURL } from "@/config";
+import { baseURL, webviewURL } from "@/config";
 import Head from "next/head";
 import NotFound from "@/component/notFound";
 
 function ShareProfile(props) {
-  const { data, userCode, webviewURL, webviewNextURL } = props;
+  const { data, userCode } = props;
 
   useEffect(() => {
     window?.addEventListener('message', (event) => {
-      if (event.origin !== webviewNextURL) return;
       if (event?.data?.message === 'openDialPad') {
         const { phoneNumber } = event?.data;
         window?.open(`tel:${phoneNumber}`, '_self');
@@ -74,7 +73,7 @@ export async function getServerSideProps({ res, query }) {
   const result = data?.result && data?.result?.length && data?.result[0];
 
   return {
-    props: { data: result, userCode: userCode, webviewURL, webviewNextURL }, // will be passed to the page component as props
+    props: { data: result, userCode: userCode }, // will be passed to the page component as props
   };
 }
 export default ShareProfile;
