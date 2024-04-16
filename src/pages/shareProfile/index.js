@@ -4,7 +4,7 @@ import Head from "next/head";
 import NotFound from "@/component/notFound";
 
 function ShareProfile(props) {
-  const { data, userCode } = props;
+  const { data, userCode, networkCode } = props;
 
   useEffect(() => {
     window?.addEventListener('message', (event) => {
@@ -15,9 +15,10 @@ function ShareProfile(props) {
     });
   }, []);
 
-  if (!userCode) {
+  if (!userCode && !networkCode) {
     return <NotFound />;
   }
+
   return (
     <>
       <Head>
@@ -43,7 +44,8 @@ function ShareProfile(props) {
       <div className="d-flex align-item-center justify-content-center height-100">
         <iframe
           allow="web-share"
-          src={`${webviewURL}?userCode=${userCode}`}
+          src={userCode ? `${webviewURL}?userCode=${userCode}` : (networkCode ? 
+            `${webviewURL}/network-profile?networkCode=${networkCode}` : <NotFound/>)}
           className="iframe-cont"
           title=""
         ></iframe>
@@ -55,12 +57,22 @@ function ShareProfile(props) {
 export async function getServerSideProps({ res, query }) {
   res.setHeader("Cache-Control", "no-store");
   const userCode = query.userCode ?? "";
+  const networkCode = query.networkCode ?? "";
 
-  const response = await fetch(
-    `${baseURL}noSessionPreviewCardScreenshot?userCode=${userCode}`,
+  let url = `${baseURL}`;
+  if (userCode) {
+    url += `noSessionPreviewCardScreenshot?userCode=${userCode}`;
+  }
+
+  if (networkCode) {
+      url += `webviewGetNetworkScreenshot?networkCode=${networkCode}`;
+  }
+
+  console.log(url, 'url')
+  const response = await fetch( url,
     {
       cache: "no-cache",
-      method: "POST",
+      method: userCode ? "POST" : "GET",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -73,7 +85,7 @@ export async function getServerSideProps({ res, query }) {
   const result = data?.result && data?.result?.length && data?.result[0];
 
   return {
-    props: { data: result, userCode: userCode }, // will be passed to the page component as props
+    props: { data: result, userCode: userCode, networkCode: networkCode }, // will be passed to the page component as props
   };
 }
 export default ShareProfile;
