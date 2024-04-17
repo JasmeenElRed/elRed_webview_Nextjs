@@ -11,7 +11,6 @@ function ShareCard(props) {
     window?.addEventListener('message', (event) => {
       if (event?.data?.message === 'openDialPad') {
         const { phoneNumber } = event?.data;
-        console.log(phoneNumber, 'pppppppppp')
         window?.open(`tel:${phoneNumber}`, '_self');
       }
     });
