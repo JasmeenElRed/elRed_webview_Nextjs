@@ -44,8 +44,8 @@ function ShareProfile(props) {
       <div className="d-flex align-item-center justify-content-center height-100">
         <iframe
           allow="web-share"
-          src={userCode ? `${webviewURL}?userCode=${userCode}` : (networkCode ? 
-            `${webviewURL}/network-profile?networkCode=${networkCode}` : <NotFound/>)}
+          src={userCode ? `${webviewURL}?userCode=${userCode}` : 
+            `${webviewURL}/network-profile?networkCode=${networkCode}`}
           className="iframe-cont"
           title=""
         ></iframe>
@@ -68,7 +68,6 @@ export async function getServerSideProps({ res, query }) {
       url += `webviewGetNetworkScreenshot?networkCode=${networkCode}`;
   }
 
-  console.log(url, 'url')
   const response = await fetch( url,
     {
       cache: "no-cache",
