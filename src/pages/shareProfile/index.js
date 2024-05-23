@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { baseURL, webviewURL } from "@/config";
+import { baseURL, webviewURL, appDefaultHeader, appHeaderKey1, appHeaderKey2 } from "@/config";
 import Head from "next/head";
 import NotFound from "@/component/notFound";
 
@@ -76,7 +76,7 @@ export async function getServerSideProps({ res, query }) {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        'X-ElRed-Test':  Math.random() > 0.5 ? 'elRed-57c191ca14f63283': 'elRed-6d41c61445eb8f56',
+         appDefaultHeader:  Math.random() > 0.5 ? appHeaderKey1: appHeaderKey2,
       },
     }
   );

@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { deleteUserURL } from "@/config";
 
 function DeleteUSerAccount() {
   return (
@@ -16,7 +17,7 @@ function DeleteUSerAccount() {
       <div className="d-flex align-item-center justify-content-center height-100">
         <iframe
           allow="web-share"
-          src="https://el-red-deleteuseraccount.vercel.app"
+          src={deleteUserURL}
           className="iframe-cont"
           title=""
         ></iframe>

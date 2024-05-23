@@ -1,5 +1,5 @@
 import NotFound from "@/component/notFound";
-import { baseURL, webviewURL } from "@/config";
+import { baseURL, webviewURL, appDefaultHeader, appHeaderKey1, appHeaderKey2 } from "@/config";
 import Head from "next/head";
 
 function ShareNeed(props) {
@@ -59,7 +59,7 @@ export async function getServerSideProps({ res, query }) {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        'X-ElRed-Test':  Math.random() > 0.5 ? 'elRed-57c191ca14f63283': 'elRed-6d41c61445eb8f56',
+        appDefaultHeader:  Math.random() > 0.5 ? appHeaderKey1: appHeaderKey2,
       },
     }
   );
@@ -67,8 +67,6 @@ export async function getServerSideProps({ res, query }) {
   const data = await response.json();
 
   const result = data?.result && data?.result?.length && data?.result[0];
-
-  console.log(result);
 
   return {
     props: { data: result, userCode: needOwner_userCode, needId }, // will be passed to the page component as props
