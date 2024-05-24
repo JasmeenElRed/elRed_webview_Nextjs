@@ -20,10 +20,7 @@ function ShareProfile(props) {
       return title;
     }
   }
-  useEffect(() =>{
-
-  })
-
+  
   useEffect(() => {
     window?.addEventListener('message', (event) => {
       if (event?.data?.message === 'openDialPad') {
