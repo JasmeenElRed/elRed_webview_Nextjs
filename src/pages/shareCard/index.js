@@ -15,7 +15,7 @@ function ShareCard(props) {
     const thirdSpaceIndex = text.indexOf(title?.slice(0, 3).join(' ')) + title?.slice(0, 3)?.join(' ').length;
     const remainingText = text?.slice(thirdSpaceIndex).trim();
     return remainingText.length > maxLength
-      ? text?.slice(0, thirdSpaceIndex) + ' ' + remainingText?.slice(0, maxLength) + "...'s Profile on elRed"
+      ? text?.slice(0, thirdSpaceIndex) + ' ' + remainingText?.slice(0, maxLength) + "...'s Card on elRed"
       : text;
   }
 
