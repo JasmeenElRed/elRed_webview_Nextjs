@@ -24,7 +24,6 @@ function ShareProfile(props) {
     return <NotFound />;
   }
 
-  console.log(data, '00')
   return (
     <>
       <Head>
@@ -32,7 +31,7 @@ function ShareProfile(props) {
         <meta
           property="og:title"
           // content={data?.profileTitle ?? ""}
-          content={truncateWithEllipses(data?.profileTitle ?? "", 30)}
+          content={truncateWithEllipses(data?.profileTitle ?? "", 24)}
           key="title"
         />
         <meta
