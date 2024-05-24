@@ -15,12 +15,8 @@ function ShareProfile(props) {
     if(cardName?.length <= 15)
       return text
     else{
-     
       cardName = cardName?.slice(0, 15) + "...'s";
       title = title?.slice(0, 2)?.join(' ') + ' ' + cardName + ' ' + title?.slice(-3).join(' ')
-      if(isIOS){
-        console.log(title, 'ios')
-      }
       return title;
     }
   }
