@@ -6,17 +6,19 @@ import NotFound from "@/component/notFound";
 function ShareCard(props) {
   const { data, userCode, networkCode } = props;
   
-  function truncateWithEllipses(text, maxLength) {
+  const truncateWithEllipses = (text) => {
     if (!text) return "";
     
-    const title = text?.split(' ');
-    if (title?.length < 3) return text;
-  
-    const thirdSpaceIndex = text.indexOf(title?.slice(0, 3).join(' ')) + title?.slice(0, 3)?.join(' ').length;
-    const remainingText = text?.slice(thirdSpaceIndex).trim();
-    return remainingText.length > maxLength
-      ? text?.slice(0, thirdSpaceIndex) + ' ' + remainingText?.slice(0, maxLength) + "...'s Card on elRed"
-      : text;
+    let title = text?.split(' ');
+    let indexWithApostropheS = title.findIndex(word => word.includes("'s"));
+    let cardName = title.slice(2, indexWithApostropheS + 1).join(' ')?.replace(/'s/g, '');
+    if(cardName?.length <= 29)
+      return text
+    else{
+      cardName = cardName?.slice(0, 29) + "...'s";
+      title = title?.slice(0, 2)?.join(' ') + ' ' + cardName + ' ' + title?.slice(-3).join(' ')
+      return title;
+    }
   }
 
 
@@ -45,7 +47,7 @@ function ShareCard(props) {
           content={data?.cardImageURL ?? ""}
           key="image"
         />
-        <meta property="og:title" content={truncateWithEllipses(data?.cardTitle ?? "", 25)} key="title" />
+        <meta property="og:title" content={truncateWithEllipses(data?.cardTitle ?? "")} key="title" />
         <meta property="og:description" content={data?.description ?? ""} />
       </Head>
       <div className="d-flex align-item-center justify-content-center height-100">

@@ -6,17 +6,19 @@ import NotFound from "@/component/notFound";
 function ShareProfile(props) {
   const { data, userCode, networkCode } = props;
 
-  function truncateWithEllipses(text, maxLength) {
+  const truncateWithEllipses = (text) => {
     if (!text) return "";
     
-    const title = text?.split(' ');
-    if (title?.length < 3) return text;
-  
-    const thirdSpaceIndex = text.indexOf(title?.slice(0, 3).join(' ')) + title?.slice(0, 3)?.join(' ').length;
-    const remainingText = text?.slice(thirdSpaceIndex).trim();
-    return remainingText.length > maxLength
-      ? text?.slice(0, thirdSpaceIndex) + ' ' + remainingText?.slice(0, maxLength) + "...'s Profile on elRed"
-      : text;
+    let title = text?.split(' ');
+    let indexWithApostropheS = title.findIndex(word => word.includes("'s"));
+    let cardName = title.slice(2, indexWithApostropheS + 1).join(' ')?.replace(/'s/g, '');
+    if(cardName?.length <= 29)
+      return text
+    else{
+      cardName = cardName?.slice(0, 29) + "...'s";
+      title = title?.slice(0, 2)?.join(' ') + ' ' + cardName + ' ' + title?.slice(-3).join(' ')
+      return title;
+    }
   }
 
   useEffect(() => {
@@ -38,8 +40,7 @@ function ShareProfile(props) {
         <link rel="icon" href="/favicon.ico" />
         <meta
           property="og:title"
-          // content={data?.profileTitle ?? ""}
-          content={truncateWithEllipses(data?.profileTitle ?? "", 25)}
+          content={truncateWithEllipses(data?.profileTitle ?? "")}
           key="title"
         />
         <meta
