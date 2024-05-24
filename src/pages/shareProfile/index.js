@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { baseURL, webviewURL, appDefaultHeader, appHeaderKey1, appHeaderKey2 } from "@/config";
 import Head from "next/head";
 import NotFound from "@/component/notFound";
-import { isIOS } from 'react-device-detect';
 
 function ShareProfile(props) {
   const { data, userCode, networkCode } = props;
@@ -13,12 +12,15 @@ function ShareProfile(props) {
     let title = text?.split(' ');
     let indexWithApostropheS = title.findIndex(word => word.includes("'s"));
     let cardName = title.slice(2, indexWithApostropheS + 1).join(' ')?.replace(/'s/g, '');
-    const charCount = isIOS ? 15 : 29
-    if(cardName?.length <= charCount)
+    if(cardName?.length <= 15)
       return text
     else{
-      cardName = cardName?.slice(0, charCount) + "...'s";
+     
+      cardName = cardName?.slice(0, 15) + "...'s";
       title = title?.slice(0, 2)?.join(' ') + ' ' + cardName + ' ' + title?.slice(-3).join(' ')
+      if(isIOS){
+        console.log(title, 'ios')
+      }
       return title;
     }
   }
