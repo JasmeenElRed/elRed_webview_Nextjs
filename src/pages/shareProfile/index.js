@@ -2,23 +2,10 @@ import { useEffect } from "react";
 import { baseURL, webviewURL, appDefaultHeader, appHeaderKey1, appHeaderKey2 } from "@/config";
 import Head from "next/head";
 import NotFound from "@/component/notFound";
+import { truncateWithEllipses } from "../globalFunction/globalFunction";
 
 function ShareProfile(props) {
   const { data, userCode, networkCode } = props;
-
-  function truncateWithEllipses(text, maxLength) {
-    if (!text) return "";
-    
-    const title = text?.split(' ');
-    if (title?.length < 3) return text;
-  
-    const thirdSpaceIndex = text.indexOf(title?.slice(0, 3).join(' ')) + title?.slice(0, 3)?.join(' ').length;
-    const remainingText = text?.slice(thirdSpaceIndex).trim();
-
-    return remainingText.length > maxLength
-      ? text?.slice(0, thirdSpaceIndex) + ' ' + remainingText?.slice(0, maxLength) + "...'s Profile on elRed"
-      : text;
-  }
 
   useEffect(() => {
     window?.addEventListener('message', (event) => {
@@ -40,7 +27,7 @@ function ShareProfile(props) {
         <meta
           property="og:title"
           // content={data?.profileTitle ?? ""}
-          content={truncateWithEllipses(data?.profileTitle ?? "", 24)}
+          content={truncateWithEllipses(data?.profileTitle ?? "", 25)}
           key="title"
         />
         <meta

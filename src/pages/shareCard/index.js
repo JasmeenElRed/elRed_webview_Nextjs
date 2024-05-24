@@ -3,6 +3,7 @@ import { baseURL, webviewURL, appDefaultHeader, appHeaderKey1, appHeaderKey2 } f
 import Head from "next/head";
 
 import NotFound from "@/component/notFound";
+import { truncateWithEllipses } from "../globalFunction/globalFunction";
 
 function ShareCard(props) {
   const { data, userCode, networkCode } = props;
@@ -32,7 +33,7 @@ function ShareCard(props) {
           content={data?.cardImageURL ?? ""}
           key="image"
         />
-        <meta property="og:title" content={data?.cardTitle ?? ""} key="title" />
+        <meta property="og:title" content={truncateWithEllipses(data?.cardTitle ?? "", 25)} key="title" />
         <meta property="og:description" content={data?.description ?? ""} />
       </Head>
       <div className="d-flex align-item-center justify-content-center height-100">
