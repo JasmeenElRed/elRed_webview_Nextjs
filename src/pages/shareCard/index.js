@@ -12,10 +12,10 @@ function ShareCard(props) {
     let title = text?.split(' ');
     let indexWithApostropheS = title.findIndex(word => word.includes("'s"));
     let cardName = title.slice(2, indexWithApostropheS + 1).join(' ')?.replace(/'s/g, '');
-    if(cardName?.length <= 15)
+    if(cardName?.length <= 10)
       return text
     else{
-      cardName = cardName?.slice(0, 15) + "...'s";
+      cardName = cardName?.slice(0, 10) + "...'s";
       title = title?.slice(0, 2)?.join(' ') + ' ' + cardName + ' ' + title?.slice(-3).join(' ')
       return title;
     }
