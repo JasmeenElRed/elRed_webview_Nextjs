@@ -6,6 +6,11 @@ import NotFound from "@/component/notFound";
 function ShareProfile(props) {
   const { data, userCode, networkCode } = props;
 
+  const truncateWithEllipses = (text, maxLength) => {
+    if (!text) return "";
+    return text.length > maxLength ? text.substring(0, maxLength) + '... Profile on elRed' : text;
+  }
+
   useEffect(() => {
     window?.addEventListener('message', (event) => {
       if (event?.data?.message === 'openDialPad') {
@@ -19,13 +24,15 @@ function ShareProfile(props) {
     return <NotFound />;
   }
 
+  console.log(data, '00')
   return (
     <>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
           property="og:title"
-          content={data?.profileTitle ?? ""}
+          // content={data?.profileTitle ?? ""}
+          content={truncateWithEllipses(data?.profileTitle ?? "", 30)}
           key="title"
         />
         <meta
