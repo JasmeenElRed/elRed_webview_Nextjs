@@ -77,6 +77,7 @@ export async function getServerSideProps({ res, query }) {
       url += `webviewGetNetworkScreenshot?networkCode=${networkCode}`;
   }
 
+  
   const response = await fetch(url,
     {
       cache: "no-cache",
