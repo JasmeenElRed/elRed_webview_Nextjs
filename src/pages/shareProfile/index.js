@@ -8,7 +8,6 @@ function ShareProfile(props) {
 
   const truncateWithEllipses = (text) => {
     if (!text) return "";
-    
     let title = text?.split(' ');
     let indexWithApostropheS = title.findIndex(word => word.includes("'s"));
     let cardName = title.slice(2, indexWithApostropheS + 1).join(' ')?.replace(/'s/g, '');
