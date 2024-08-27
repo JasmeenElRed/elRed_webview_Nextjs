@@ -14,7 +14,7 @@ function ShareNeed(props) {
     <>
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <meta property="og:title" content={data.needDescription || "webviewtestnext.elred.io"} key="title" />
+        <meta property="og:title" content={data.needDescription || "need data"} key="title" />
         {data?.otherTags?.length && (
           <meta
             property="og:description"
