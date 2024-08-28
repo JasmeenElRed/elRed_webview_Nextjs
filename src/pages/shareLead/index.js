@@ -15,7 +15,7 @@ function ShareNeed(props) {
         <meta property="og:title" content={data?.leadTitle ?? ""} key="title" />
         <meta
           property="og:description"
-          content={data?.leadsDescription ?? ""}
+          content={data?.leadsDescription ?? "No Description Added"}
           key="description"
         />
         <meta
