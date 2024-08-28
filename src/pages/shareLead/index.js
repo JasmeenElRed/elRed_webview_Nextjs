@@ -8,6 +8,8 @@ function ShareNeed(props) {
   if (!userCode && !leadId) {
     return <NotFound />;
   }
+
+  console.log(data)
   return (
     <>
       <Head>
@@ -15,7 +17,7 @@ function ShareNeed(props) {
         <meta property="og:title" content={data?.leadTitle ?? ""} key="title" />
         <meta
           property="og:description"
-          content={data?.leadsDescription ?? "No Description Added"}
+          content={data?.leadsDescription ?? ""}
           key="description"
         />
         <meta
