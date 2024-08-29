@@ -14,14 +14,14 @@ function ShareNeed(props) {
     <>
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <meta property="og:title" content={data.title[0]} key="title" />
-        {/* {data?.otherTags?.length && (
+        <meta property="og:title" content={data.needDescription || "No Description Added"} key="title" />
+        {data?.otherTags?.length && (
           <meta
             property="og:description"
             content={`Tags: ${data?.otherTags?.join(", ")}`}
             key="description"
           />
-        )} */}
+        )}
         <meta
           property="og:image"
           content={data?.needImageURL ?? "/"}
