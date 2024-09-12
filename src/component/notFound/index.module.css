@@ -21,3 +21,15 @@
   margin-top: 5px;
   font-family: "AvenirNextLTPro-Medium";
 }
+
+.noInternetContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 375px;
+  margin: 0 auto;
+  background-color: #0d0d0d;
+  font-family: "AvenirNextLTPro-Medium";
+}
