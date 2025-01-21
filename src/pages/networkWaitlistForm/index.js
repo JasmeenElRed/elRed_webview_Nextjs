@@ -102,7 +102,8 @@ const NetworkWaitlistForm = () => {
     });
     setIsPhoneValid(true);
     setIsEmailValid(true);
-    isNameValid(true);
+    setIsCompanyValid(true);
+    setIsNameValid(true)
   };
 
   const submitForm = async () => {
@@ -145,8 +146,10 @@ const NetworkWaitlistForm = () => {
           phone: "",
           countryCode: "91",
         });
-        setIsPhoneValid(false);
+        setIsPhoneValid(true);
         setIsEmailValid(true);
+        setIsCompanyValid(true);
+        setIsNameValid(true)
       }
     } catch (error) {
       if (error?.response?.data?.errorCode === 111) {
