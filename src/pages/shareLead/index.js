@@ -8,6 +8,8 @@ function ShareNeed(props) {
   if (!userCode && !leadId) {
     return <NotFound />;
   }
+
+  console.log(data)
   return (
     <>
       <Head>

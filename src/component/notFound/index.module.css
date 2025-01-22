@@ -7,6 +7,7 @@
   /* letter-spacing: 0em; */
   text-align: center;
   margin-top: 5px;
+  font-family: "AvenirNextLTPro-Regular";
 }
 
 .oops_text {
@@ -18,4 +19,23 @@
   text-align: center;
   color: #e72d38;
   margin-top: 5px;
+  font-family: "AvenirNextLTPro-Medium";
+}
+
+.noInternetContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 375px;
+  margin: 0 auto;
+  background-color: #0d0d0d;
+  font-family: "AvenirNextLTPro-Medium";
+}
+
+@media only screen and (max-width: 450px){
+  .noInternetContainer{
+    width: 100%;
+  }
 }
