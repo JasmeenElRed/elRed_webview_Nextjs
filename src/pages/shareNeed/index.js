@@ -9,8 +9,9 @@ import {
 import Head from "next/head";
 
 function ShareNeed(props) {
-  const { data, needId, userCode, needType } = props;
+  const { data, needId, userCode } = props;
 
+  // console.log(data?.needType,'propp')
   if (!userCode && !needId) {
     return <NotFound />;
   }
@@ -22,7 +23,7 @@ function ShareNeed(props) {
         <meta
           property="og:title"
           content={
-            needType === "introduction"
+            data?.needType === "introduction"
               ? `Open to collaborate on ${data.needDescription}`
               : data.needDescription || "No Description Added"
           }
@@ -64,7 +65,6 @@ export async function getServerSideProps({ res, query }) {
   res.setHeader("Cache-Control", "no-store");
   const needId = query?.needId ?? "";
   const needOwner_userCode = query?.needOwner_userCode ?? "";
-  const needType = query?.needType ?? "";
 
   const response = await fetch(
     `${baseURL}webViewPreviewNeedScreenshot?userCode=${needOwner_userCode}&needId=${needId}`,
@@ -84,7 +84,7 @@ export async function getServerSideProps({ res, query }) {
   const result = data?.result && data?.result?.length && data?.result[0];
 
   return {
-    props: { data: result, userCode: needOwner_userCode, needId, needType }, // will be passed to the page component as props
+    props: { data: result, userCode: needOwner_userCode, needId }, // will be passed to the page component as props
   };
 }
 export default ShareNeed;
