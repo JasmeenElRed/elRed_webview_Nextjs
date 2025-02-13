@@ -11,7 +11,12 @@ import Head from "next/head";
 function ShareNeed(props) {
   const { data, needId, userCode } = props;
 
-  // console.log(data?.needType,'propp')
+  // console.log(data?.titleTags?.join(", "),'propp')
+  const formattedTitleTags =
+  data?.titleTags?.length === 1
+    ? data?.titleTags[0]
+    : data?.titleTags?.join(", ");
+
   if (!userCode && !needId) {
     return <NotFound />;
   }
@@ -24,8 +29,8 @@ function ShareNeed(props) {
           property="og:title"
           content={
             data?.needType === "introduction"
-              ? `Open to collaborate on ${data.needDescription}`
-              : data.needDescription || "No Description Added"
+            ? `Open to collaborate on  ${formattedTitleTags}`
+            : data.needDescription || "No Description Added"
           }
           key="title"
         />
