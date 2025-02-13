@@ -1,11 +1,15 @@
 import NotFound from "@/component/notFound";
-import { baseURL, webviewURL, appDefaultHeader, appHeaderKey1, appHeaderKey2 } from "@/config";
+import {
+  baseURL,
+  webviewURL,
+  appDefaultHeader,
+  appHeaderKey1,
+  appHeaderKey2,
+} from "@/config";
 import Head from "next/head";
 
 function ShareNeed(props) {
-  const { data, needId, userCode } = props;
-
-  console.log(data, "...................");
+  const { data, needId, userCode, needType } = props;
 
   if (!userCode && !needId) {
     return <NotFound />;
@@ -14,7 +18,17 @@ function ShareNeed(props) {
     <>
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <meta property="og:title" content={data.needDescription || "No Description Added"} key="title" />
+        {/* <meta property="og:title" content={data.needDescription || "No Description Added"} key="title" /> */}
+        <meta
+          property="og:title"
+          content={
+            needType === "introduction"
+              ? `Open to collaborate on ${data.needDescription}`
+              : data.needDescription || "No Description Added"
+          }
+          key="title"
+        />
+
         {data?.otherTags?.length && (
           <meta
             property="og:description"
@@ -50,6 +64,7 @@ export async function getServerSideProps({ res, query }) {
   res.setHeader("Cache-Control", "no-store");
   const needId = query?.needId ?? "";
   const needOwner_userCode = query?.needOwner_userCode ?? "";
+  const needType = query?.needType ?? "";
 
   const response = await fetch(
     `${baseURL}webViewPreviewNeedScreenshot?userCode=${needOwner_userCode}&needId=${needId}`,
@@ -59,7 +74,7 @@ export async function getServerSideProps({ res, query }) {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        appDefaultHeader:  Math.random() > 0.5 ? appHeaderKey1: appHeaderKey2,
+        appDefaultHeader: Math.random() > 0.5 ? appHeaderKey1 : appHeaderKey2,
       },
     }
   );
@@ -69,7 +84,7 @@ export async function getServerSideProps({ res, query }) {
   const result = data?.result && data?.result?.length && data?.result[0];
 
   return {
-    props: { data: result, userCode: needOwner_userCode, needId }, // will be passed to the page component as props
+    props: { data: result, userCode: needOwner_userCode, needId, needType }, // will be passed to the page component as props
   };
 }
 export default ShareNeed;
