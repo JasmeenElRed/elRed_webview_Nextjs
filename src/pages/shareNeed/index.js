@@ -14,12 +14,12 @@ function ShareNeed(props) {
   // console.log(data?.titleTags?.join(", "),'propp')
   const formattedTitleTags =
   data?.titleTags?.length === 1
-    ? data?.titleTags[0]
+    ? data?.titleTags?.[0]
     : data?.titleTags?.join(", ");
 
   const truncatedTitleTags =
-  formattedTitleTags.length > 32
-    ? `${formattedTitleTags.substring(0, 32)}...`
+  formattedTitleTags?.length > 32
+    ? `${formattedTitleTags?.substring(0, 32)}...`
     : formattedTitleTags;
 
   if (!userCode && !needId) {
