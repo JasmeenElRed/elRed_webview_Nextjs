@@ -36,7 +36,7 @@ function ShareNeed(props) {
           content={
             data?.needType === "introduction"
             ? `Open to collaborate on ${truncatedTitleTags}`
-            : data.needDescription || "No Description Added"
+            : data.needDescription ||`${data?.firstname} needs help with something. Tap to know more!`
           }
           key="title"
         />
@@ -93,6 +93,7 @@ export async function getServerSideProps({ res, query }) {
   const data = await response.json();
 
   const result = data?.result && data?.result?.length && data?.result[0];
+
 
   return {
     props: { data: result, userCode: needOwner_userCode, needId }, // will be passed to the page component as props
