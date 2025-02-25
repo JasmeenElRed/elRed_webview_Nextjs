@@ -11,6 +11,7 @@ import Head from "next/head";
 function ShareNeed(props) {
   const { data, needId, userCode } = props;
 
+  console.log(data,'data')
   // console.log(data?.titleTags?.join(", "),'propp')
   const formattedTitleTags =
   data?.titleTags?.length === 1
