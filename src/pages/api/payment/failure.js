@@ -1,5 +1,4 @@
 export default function handler(req, res) {
-    res.redirect(307, '/payment/failure');
+    res.redirect(301, '/payment/failure');
   }
 
-  console.log('failed....')

@@ -50,6 +50,7 @@ useEffect(() => {
             email: result.email || "",
             phone: result.phone || "",
             surl: 'https://webviewrefactoringnext.elred.io/api/payment/success' || "",
+            furl: 'https://webviewrefactoringnext.elred.io/api/payment/failure' || "",
             // surl: result.surl || "",
             furl: result.furl || "",
             hash: result.hash || "",
