@@ -73,6 +73,7 @@ useEffect(() => {
   console.log(formData,'fffs')
   return (
     <div className="d-flex align-items-center justify-content-center h-100">
+        <h1>Hello World</h1>
       <form
         action="https://test.payu.in/_payment"
         method="post"
