@@ -7,8 +7,10 @@ const Success = () => {
   
 console.log('success page rendered now....')
   useEffect(() => {
+
+    const txnid = localStorage.getItem('transactionId')
     axios
-      .get("https://refactoring.elred.io/getFinalPaymentStatus?txnid=12345")
+      .get(`https://refactoring.elred.io/payment/getFinalPaymentStatus?txnid=${txnid}`)
       .then((response) => {
         console.log(response)
       }
