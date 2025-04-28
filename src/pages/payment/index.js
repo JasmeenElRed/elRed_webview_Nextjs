@@ -70,7 +70,7 @@ useEffect(() => {
     }));
   };
 
-  console.log(formData,'fffs')
+  console.log(formData,'tashaf...')
   return (
     <div className="d-flex align-items-center justify-content-center h-100">
         <h1>Hello World</h1>
