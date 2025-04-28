@@ -5,7 +5,7 @@ import axios from "axios";
 
 const Success = () => {
   
-    console.log('success page rendered....')
+console.log('success page rendered now....')
   useEffect(() => {
     axios
       .get("https://refactoring.elred.io/getFinalPaymentStatus?txnid=12345")
