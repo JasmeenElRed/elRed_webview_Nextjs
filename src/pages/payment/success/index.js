@@ -23,7 +23,7 @@ console.log('success page rendered now....')
   
   return (
     <div className="d-flex align-items-center justify-content-center h-100">
-      <h1>Payment failed....</h1>
+      <h1>Payment success....</h1>
     </div>
   );
 };
