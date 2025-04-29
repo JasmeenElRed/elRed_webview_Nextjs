@@ -7,7 +7,7 @@ import failed from "../../../../public/credit-card.gif";
 import pending from "../../../../public/file.gif";
 
 const Failure = () => {
-  const [data, setData] = useState("");
+  const [data, setData] = useState(null);
 
   //   useEffect(() => {
   //     const txnid = localStorage.getItem("transactionId");
@@ -31,14 +31,17 @@ const Failure = () => {
         .get(
           `https://refactoring.elred.io/payment/getFinalPaymentStatus?txnid=${txnid}`
         )
-        .then((res) => {
-          setData(res?.data?.result?.[0]);
+        .then((response) => {
+          console.log(response);
+          setData(response?.data?.result?.[0]);
         })
-        .catch((err) => console.error(err));
+        .catch((error) => {
+          console.error("Error fetching HTML:", error);
+        });
     }
   }, []);
 
-  if (!data) return <div>Loading...</div>;
+if (!data) return <div>Loading...</div>;
 
   return (
     <div className="d-flex align-items-center justify-content-center h-100 p-4">
