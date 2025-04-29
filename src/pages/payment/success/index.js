@@ -63,8 +63,8 @@ const Success = () => {
           {data?.status == "pending" ? "Pending" : "Success"}
         </h1>
         <p className="text-center mt-3">
-          Your payment of <b>Rs. {data?.amount}</b> for the plan {data?.plan}
-          is{" "}
+          Your payment of <b>Rs. {data?.amount}</b> for the plan {data?.plan} is
+          {" "}
           {data?.status == "pending"
             ? "in pending now."
             : "processed successfully."}

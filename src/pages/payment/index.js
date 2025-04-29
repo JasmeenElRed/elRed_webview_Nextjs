@@ -73,14 +73,13 @@ useEffect(() => {
 
   console.log(formData,'tashaf...')
   return (
-    <div className="d-flex align-items-center justify-content-center h-100">
+    <div className="d-flex align-items-center justify-content-center h-100 p-4">
       <form
         action="https://secure.payu.in/_payment"
         method="post"
-        className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md space-y-4 d-flex flex-column p-4 gap-4 px-5"
+        className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md space-y-4 d-flex flex-column p-4 gap-4 px-5 col-12 col-sm-8 col-md-6 col-lg-5 col-xl-3"
       >
         <h2 className="text-2xl font-bold text-center">PayU Payment</h2>
-
         {/* Visible Inputs */}
         <input
           name="firstname"
@@ -91,7 +90,7 @@ useEffect(() => {
           onChange={handleChange}
           readOnly
         />
-        <input
+        {/* <input
           name="lastname"
           type="text"
           placeholder="Last Name"
@@ -99,7 +98,7 @@ useEffect(() => {
           value={formData.lastname}
           onChange={handleChange}
           readOnly
-        />
+        /> */}
         <input
           name="email"
           type="email"
@@ -151,7 +150,7 @@ useEffect(() => {
           type="submit"
           className=" rounded btn btn-success"
         >
-          Pay Now (Test Mode)
+          Pay Now
         </button>
       </form>
     </div>
