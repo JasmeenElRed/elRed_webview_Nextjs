@@ -23,7 +23,7 @@ const PayUform = () => {
 useEffect(() => {
     axios
       .post("https://refactoring.elred.io/payment/makePaymentRequest/json", {
-        amount: 1000,
+        amount: 1,
         networkCode: "66b4a06a63752fd91d935b2c",
         userCode: "67cac8ab86be297db41fc7cd",
         plan: "yearly",

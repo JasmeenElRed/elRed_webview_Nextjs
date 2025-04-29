@@ -5,6 +5,8 @@ import axios from "axios";
 import Image from "next/image";
 import failed from "../../../../public/credit-card.gif";
 import pending from "../../../../public/file.gif";
+import Link from "next/link";
+
 
 const Failure = () => {
   const [data, setData] = useState(null);
@@ -67,6 +69,9 @@ if (!data) return <div>Loading...</div>;
             ? "in pending now."
             : " failed. Please try again or contact support."}
         </p>
+        <Link href="/payment">
+          <button className="btn btn-primary">Home</button>
+        </Link>
       </div>
     </div>
   );

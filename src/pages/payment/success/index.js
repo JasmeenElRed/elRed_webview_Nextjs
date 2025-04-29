@@ -5,6 +5,7 @@ import axios from "axios";
 import Image from "next/image";
 import success from "../../../../public/verified.gif";
 import pending from "../../../../public/file.gif";
+import Link from "next/link";
 
 const Success = () => {
   const [data, setData] = useState(null);
@@ -26,8 +27,7 @@ const Success = () => {
     }
   }, []);
 
-      if (!data) return <div>Loading...</div>;
-
+  if (!data) return <div>Loading...</div>;
 
   //   useEffect(() => {
   //     const txnid = localStorage.getItem("transactionId");
@@ -69,6 +69,9 @@ const Success = () => {
             ? "in pending now."
             : "processed successfully."}
         </p>
+        <Link href="/payment">
+          <button className="btn btn-primary">Home</button>
+        </Link>
       </div>
     </div>
   );
