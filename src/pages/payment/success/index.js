@@ -18,7 +18,7 @@ const Success = () => {
         )
         .then((response) => {
           console.log(response);
-          setData(response?.data?.result);
+          setData(response?.data?.result?.[0]);
         })
         .catch((error) => {
           console.error("Error fetching HTML:", error);
@@ -26,7 +26,7 @@ const Success = () => {
     }
   }, []);
 
-    if (!data) return <div>Loading...</div>;
+      if (!data) return <div>Loading...</div>;
 
 
   //   useEffect(() => {
@@ -63,7 +63,7 @@ const Success = () => {
           {data?.status == "pending" ? "Pending" : "Success"}
         </h1>
         <p className="text-center mt-3">
-          Your payment of <br>Rs. {data?.amount}</br> for the plan {data?.plan}
+          Your payment of <b>Rs. {data?.amount}</b> for the plan {data?.plan}
           is{" "}
           {data?.status == "pending"
             ? "in pending now."

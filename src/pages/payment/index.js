@@ -49,7 +49,7 @@ useEffect(() => {
             lastname: result.lastname || "",
             email: result.email || "",
             phone: result.phone || "",
-            surl: 'https://webviewrefactoringnext.elred.io/api/payment/success' || "",
+            surl: 'http://localhost:3000/api/payment/success' || "",
             furl: 'https://webviewrefactoringnext.elred.io/api/payment/failure' || "",
             // surl: result.surl || "",
             // furl: result.furl || "",
