@@ -75,7 +75,7 @@ useEffect(() => {
   return (
     <div className="d-flex align-items-center justify-content-center h-100">
       <form
-        action="https://test.payu.in/_payment"
+        action="https://secure.payu.in/_payment"
         method="post"
         className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md space-y-4 d-flex flex-column p-4 gap-4 px-5"
       >
