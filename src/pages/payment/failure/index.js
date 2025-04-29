@@ -5,7 +5,7 @@ import axios from "axios";
 
 const Failure = () => {
   
-console.log('success page rendered now....')
+console.log('failure page rendered now....')
   useEffect(() => {
 
     const txnid = localStorage.getItem('transactionId')

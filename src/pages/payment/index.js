@@ -20,7 +20,6 @@ const PayUform = () => {
     udf2: "",
   });
 
-
 useEffect(() => {
     axios
       .post("https://refactoring.elred.io/payment/makePaymentRequest/json", {
@@ -32,6 +31,7 @@ useEffect(() => {
       .then((response) => {
         const result = response?.data?.result?.[0];
 
+        console.log(result,'result from api')
         // Save txnid in localStorage
         if (result.txnid) {
             localStorage.setItem("transactionId", result.txnid);
@@ -52,7 +52,7 @@ useEffect(() => {
             surl: 'https://webviewrefactoringnext.elred.io/api/payment/success' || "",
             furl: 'https://webviewrefactoringnext.elred.io/api/payment/failure' || "",
             // surl: result.surl || "",
-            furl: result.furl || "",
+            // furl: result.furl || "",
             hash: result.hash || "",
             udf1: result.udf1 || "",
             udf2: result.udf2 || "",
