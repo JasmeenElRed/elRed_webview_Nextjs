@@ -7,22 +7,38 @@ import success from "../../../../public/verified.gif";
 import pending from "../../../../public/file.gif";
 
 const Success = () => {
-  const [data, setData] = useState("");
-  
+  const [data, setData] = useState(null);
+
+  //   useEffect(() => {
+  //     const txnid = localStorage.getItem("transactionId");
+  //     axios
+  //       .get(
+  //         `https://refactoring.elred.io/payment/getFinalPaymentStatus?txnid=${txnid}`
+  //       )
+  //       .then((response) => {
+  //         console.log(response);
+  //         setData(response?.data?.result);
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error fetching HTML:", error);
+  //       });
+  //   }, []);
+
   useEffect(() => {
     const txnid = localStorage.getItem("transactionId");
-    axios
-      .get(
-        `https://refactoring.elred.io/payment/getFinalPaymentStatus?txnid=${txnid}`
-      )
-      .then((response) => {
-        console.log(response);
-        setData(response?.data?.result);
-      })
-      .catch((error) => {
-        console.error("Error fetching HTML:", error);
-      });
+    if (txnid) {
+      axios
+        .get(
+          `https://refactoring.elred.io/payment/getFinalPaymentStatus?txnid=${txnid}`
+        )
+        .then((res) => {
+          setData(res?.data?.result);
+        })
+        .catch((err) => console.error(err));
+    }
   }, []);
+
+  if (!data) return <div>Loading...</div>;
 
   return (
     <div className="d-flex align-items-center justify-content-center h-100 p-4 max">
@@ -42,7 +58,7 @@ const Success = () => {
           {data?.status == "pending" ? "Pending" : "Success"}
         </h1>
         <p className="text-center mt-3">
-          Your payment of <br>Rs. {data?.amount}</br> for the plan {data?.plan} 
+          Your payment of <br>Rs. {data?.amount}</br> for the plan {data?.plan}
           is{" "}
           {data?.status == "pending"
             ? "in pending now."

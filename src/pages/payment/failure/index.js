@@ -2,27 +2,43 @@
 // PayUFormTestOnly.js
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Image from 'next/image'
-import failed from '../../../../public/credit-card.gif'
-import pending from '../../../../public/file.gif'
+import Image from "next/image";
+import failed from "../../../../public/credit-card.gif";
+import pending from "../../../../public/file.gif";
 
 const Failure = () => {
   const [data, setData] = useState("");
-  
+
+  //   useEffect(() => {
+  //     const txnid = localStorage.getItem("transactionId");
+  //     axios
+  //       .get(
+  //         `https://refactoring.elred.io/payment/getFinalPaymentStatus?txnid=${txnid}`
+  //       )
+  //       .then((response) => {
+  //         console.log(response);
+  //         setData(response?.data?.result?.[0]);
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error fetching HTML:", error);
+  //       });
+  //   }, []);
+
   useEffect(() => {
     const txnid = localStorage.getItem("transactionId");
-    axios
-      .get(
-        `https://refactoring.elred.io/payment/getFinalPaymentStatus?txnid=${txnid}`
-      )
-      .then((response) => {
-        console.log(response);
-        setData(response?.data?.result?.[0]);
-      })
-      .catch((error) => {
-        console.error("Error fetching HTML:", error);
-      });
+    if (txnid) {
+      axios
+        .get(
+          `https://refactoring.elred.io/payment/getFinalPaymentStatus?txnid=${txnid}`
+        )
+        .then((res) => {
+          setData(res?.data?.result?.[0]);
+        })
+        .catch((err) => console.error(err));
+    }
   }, []);
+
+  if (!data) return <div>Loading...</div>;
 
   return (
     <div className="d-flex align-items-center justify-content-center h-100 p-4">
@@ -42,8 +58,8 @@ const Failure = () => {
           {data?.status == "pending" ? "Pending" : "Failed"}
         </h1>
         <p className="text-center mt-3">
-          Your payment of <b>Rs. {data?.amount}</b> for the plan {data?.plan} {" "}
-          is {"  "}
+          Your payment of <b>Rs. {data?.amount}</b> for the plan {data?.plan} is{" "}
+          {"  "}
           {data?.status == "pending"
             ? "in pending now."
             : " failed. Please try again or contact support."}
