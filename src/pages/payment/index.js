@@ -81,7 +81,7 @@ useEffect(() => {
           name="firstname"
           type="text"
           placeholder="First Name"
-          className="w-full border rounded p-2 bg-light"
+          className="w-full border rounded p-2 bg-light text-dark"
           value={formData.firstname}
           onChange={handleChange}
           readOnly
@@ -99,7 +99,7 @@ useEffect(() => {
           name="email"
           type="email"
           placeholder="Email"
-          className="w-full border rounded p-2 bg-light"
+          className="w-full border rounded p-2 bg-light text-dark"
           value={formData.email}
           onChange={handleChange}
           readOnly
@@ -108,7 +108,7 @@ useEffect(() => {
           name="phone"
           type="text"
           placeholder="Phone"
-          className="w-full border rounded p-2 bg-light"
+          className="w-full border rounded p-2 bg-light text-dark"
           value={formData.phone}
           onChange={handleChange}
           readOnly
@@ -117,7 +117,7 @@ useEffect(() => {
           name="amount"
           type="number"
           placeholder="Amount"
-          className="w-full border rounded p-2 bg-light"
+          className="w-full border rounded p-2 bg-light text-dark"
           value={formData.amount}
           onChange={handleChange}
           readOnly
@@ -126,7 +126,7 @@ useEffect(() => {
           name="productinfo"
           type="text"
           placeholder="Product Info"
-          className="w-full border rounded p-2 bg-light"
+          className="w-full border rounded p-2 bg-light text-dark"
           value={formData.productinfo}
           onChange={handleChange}
           readOnly
