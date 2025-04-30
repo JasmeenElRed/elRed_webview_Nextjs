@@ -6,13 +6,14 @@ import Image from "next/image";
 import failed from "../../../../public/credit-card.gif";
 import pending from "../../../../public/file.gif";
 import Link from "next/link";
-
+import loader from "../../../../public/loader.svg";
 
 const Failure = () => {
   const [data, setData] = useState(null);
 
-  //   useEffect(() => {
-  //     const txnid = localStorage.getItem("transactionId");
+  // useEffect(() => {
+  //   const txnid = localStorage.getItem("transactionId");
+  //   if (txnid) {
   //     axios
   //       .get(
   //         `https://refactoring.elred.io/payment/getFinalPaymentStatus?txnid=${txnid}`
@@ -24,26 +25,45 @@ const Failure = () => {
   //       .catch((error) => {
   //         console.error("Error fetching HTML:", error);
   //       });
-  //   }, []);
+  //   }
+  // }, []);
 
   useEffect(() => {
     const txnid = localStorage.getItem("transactionId");
-    if (txnid) {
-      axios
-        .get(
-          `https://refactoring.elred.io/payment/getFinalPaymentStatus?txnid=${txnid}`
-        )
-        .then((response) => {
+    let intervalId;
+  
+    const fetchData = async () => {
+      if (txnid) {
+        try {
+          const response = await axios.get(
+            `https://refactoring.elred.io/payment/getFinalPaymentStatus?txnid=${txnid}`
+          );
+          const result = response?.data?.result?.[0];
           console.log(response);
-          setData(response?.data?.result?.[0]);
-        })
-        .catch((error) => {
-          console.error("Error fetching HTML:", error);
-        });
-    }
+          setData(result);
+  
+          // Stop polling if status is "failed"
+          if (result?.status === "failure" && intervalId) {
+            clearInterval(intervalId);
+          }
+        } catch (error) {
+          console.error("Error fetching payment status:", error);
+        }
+      }
+    };
+  
+    fetchData(); // Initial fetch
+    intervalId = setInterval(fetchData, 5000); // Poll every 5 seconds
+  
+    return () => clearInterval(intervalId); // Cleanup on unmount
   }, []);
 
-if (!data) return <div>Loading...</div>;
+  if (!data)
+    return (
+      <div className="d-flex align-items-center justify-content-center h-100">
+        <Image src={loader} alt="loading" />
+      </div>
+    );
 
   return (
     <div className="d-flex align-items-center justify-content-center h-100 p-4">

@@ -31,7 +31,6 @@ useEffect(() => {
       .then((response) => {
         const result = response?.data?.result?.[0];
 
-        console.log(result,'result from api')
         // Save txnid in localStorage
         if (result.txnid) {
             localStorage.setItem("transactionId", result.txnid);
@@ -42,15 +41,13 @@ useEffect(() => {
             ...prev,
             key: result.key || "",
             txnid: result.txnid || "",
-            // amount: result.amount || "",
             amount: result.amount !== undefined ? String(result.amount) : "",
             productinfo: result.productinfo || "",
             firstname: result.firstname || "",
             lastname: result.lastname || "",
             email: result.email || "",
             phone: result.phone || "",
-            // surl: 'https://webviewrefactoringnext.elred.io/api/payment/success' || "",
-            // furl: 'https://webviewrefactoringnext.elred.io/api/payment/failure' || "",
+            // furl: 'http://localhost:3000/api/payment/failure' || "",
             surl: result.surl || "",
             furl: result.furl || "",
             hash: result.hash || "",
@@ -71,7 +68,6 @@ useEffect(() => {
     }));
   };
 
-  console.log(formData,'tashaf...')
   return (
     <div className="d-flex align-items-center justify-content-center h-100 p-4">
       <form
@@ -85,7 +81,7 @@ useEffect(() => {
           name="firstname"
           type="text"
           placeholder="First Name"
-          className="w-full border rounded p-2"
+          className="w-full border rounded p-2 bg-light"
           value={formData.firstname}
           onChange={handleChange}
           readOnly
@@ -103,7 +99,7 @@ useEffect(() => {
           name="email"
           type="email"
           placeholder="Email"
-          className="w-full border rounded p-2"
+          className="w-full border rounded p-2 bg-light"
           value={formData.email}
           onChange={handleChange}
           readOnly
@@ -112,7 +108,7 @@ useEffect(() => {
           name="phone"
           type="text"
           placeholder="Phone"
-          className="w-full border rounded p-2"
+          className="w-full border rounded p-2 bg-light"
           value={formData.phone}
           onChange={handleChange}
           readOnly
@@ -121,7 +117,7 @@ useEffect(() => {
           name="amount"
           type="number"
           placeholder="Amount"
-          className="w-full border rounded p-2"
+          className="w-full border rounded p-2 bg-light"
           value={formData.amount}
           onChange={handleChange}
           readOnly
@@ -130,7 +126,7 @@ useEffect(() => {
           name="productinfo"
           type="text"
           placeholder="Product Info"
-          className="w-full border rounded p-2"
+          className="w-full border rounded p-2 bg-light"
           value={formData.productinfo}
           onChange={handleChange}
           readOnly
