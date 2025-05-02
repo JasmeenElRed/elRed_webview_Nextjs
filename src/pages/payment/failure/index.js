@@ -85,7 +85,7 @@ const Failure = () => {
         />
         <h1
           className={
-            data?.status == "pending" ? "text-warning" : "text-success"
+            data?.status == "pending" ? "text-warning" : "text-danger"
           }
         >
           {data?.status == "pending" ? "Pending" : "Failed"}
