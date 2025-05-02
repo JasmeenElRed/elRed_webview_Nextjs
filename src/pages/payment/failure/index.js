@@ -75,7 +75,7 @@ const Failure = () => {
 
   return (
     <div className="d-flex align-items-center justify-content-center h-100 p-4">
-      <div className="d-flex align-items-center justify-content-end  flex-column border border-success p-3 rounded col-12 col-sm-6 col-md-6 col-lg-3 ">
+      <div className="d-flex align-items-center justify-content-end flex-column border border-danger p-3 rounded col-12 col-sm-6 col-md-6 col-lg-3 ">
         <h5 className="m-5">Transaction Details</h5>
         <Image
           src={data?.status == "pending" ? pending : failed}
