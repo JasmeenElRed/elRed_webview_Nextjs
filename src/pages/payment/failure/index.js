@@ -98,7 +98,7 @@ const Failure = () => {
             : " failed. Please try again or contact support."}
         </p>
 
-        <div className="fw-light text-primary">Transaction ID</div>
+        <div className="fw-light text-secondary">Transaction ID</div>
         <div
           className="fw-lighter d-flex align-items-center gap-2 position-relative mb-4"
           style={{ fontSize: "13px" }}
