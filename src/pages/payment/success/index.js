@@ -7,9 +7,11 @@ import success from "../../../../public/verified.gif";
 import pending from "../../../../public/file.gif";
 import Link from "next/link";
 import loader from "../../../../public/loader.svg";
+import { FaRegCopy } from "react-icons/fa"; // Import the copy icon
 
 const Success = () => {
   const [data, setData] = useState(null);
+  const [copied, setCopied] = useState(false);
 
   // useEffect(() => {
   //   const txnid = localStorage.getItem("transactionId");
@@ -31,7 +33,7 @@ const Success = () => {
   useEffect(() => {
     const txnid = localStorage.getItem("transactionId");
     let intervalId;
-  
+
     const fetchData = async () => {
       if (txnid) {
         try {
@@ -41,7 +43,7 @@ const Success = () => {
           const result = response?.data?.result?.[0];
           console.log(response);
           setData(result);
-  
+
           // Stop polling if status is "failed"
           if (result?.status === "success" && intervalId) {
             clearInterval(intervalId);
@@ -51,12 +53,18 @@ const Success = () => {
         }
       }
     };
-  
+
     fetchData(); // Initial fetch
     intervalId = setInterval(fetchData, 5000); // Poll every 5 seconds
-  
+
     return () => clearInterval(intervalId); // Cleanup on unmount
   }, []);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(data?.txnid);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  };
 
   if (!data)
     return (
@@ -82,13 +90,60 @@ const Success = () => {
         >
           {data?.status == "pending" ? "Pending" : "Success"}
         </h1>
-        <p className="text-center mt-3">
-          Your payment of <b>Rs. {data?.amount}</b> for the plan {data?.plan} is
-          {" "}
+        {/* <div className="fw-lighter" style={{fontSize:'12px'}}>TXNID: {data?.txnid}</div> */}
+        {/* <div
+          className="fw-lighter d-flex align-items-center gap-2"
+          style={{ fontSize: "14px" }}
+        >
+          TXNID: <span className="text-primary">{data?.txnid}</span>
+          <FaRegCopy
+            onClick={() => {
+              navigator.clipboard.writeText(data?.txnid);
+              alert("Transaction ID copied!");
+            }}
+            style={{ cursor: "pointer" }}
+            title="Copy TXNID"
+          />
+        </div> */}
+
+        <p className="text-center mt-1">
+          Your payment of <b>Rs. {data?.amount}</b> for the plan {data?.plan} is{" "}
           {data?.status == "pending"
             ? "in pending now."
             : "processed successfully."}
         </p>
+
+        <div className="fw-light text-secondary">Transaction ID</div>
+        <div
+          className="fw-lighter d-flex align-items-center gap-2 position-relative mb-4"
+          style={{ fontSize: "13px" }}
+        >
+          {data?.txnid}
+          <div
+            onClick={handleCopy}
+            style={{ cursor: "pointer" }}
+            title="Copy TXNID"
+          >
+            <FaRegCopy />
+            {copied && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: "-25px",
+                  background: "#000",
+                  color: "#fff",
+                  padding: "2px 6px",
+                  borderRadius: "4px",
+                  fontSize: "10px",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                Copied!
+              </div>
+            )}
+          </div>
+        </div>
+
         <Link href="/payment">
           <button className="btn btn-primary">Home</button>
         </Link>
