@@ -39,6 +39,60 @@ const Success = () => {
       });
   };
 
+  // useEffect(() => {
+  //   const txnId = searchParams.get("txnid");
+  //   const token = localStorage.getItem("accessToken");
+
+  //   if (!txnId) return;
+
+  //   const handleSessionExpired = () => {
+  //     localStorage.removeItem("accessToken");
+  //     localStorage.removeItem("userdata");
+  //     localStorage.removeItem("trxId");
+  //     router.push(
+  //       transactionData?.networkClusterDetails?.networkClusterCode
+  //         ? `/membership?nccode=${transactionData?.networkClusterDetails?.networkClusterCode}`
+  //         : "/membership"
+  //     );
+  //     // router.push("/membership");
+  //     // setIsOpen(false);
+  //   };
+
+  //   const fetchTransactionStatus = async () => {
+  //     try {
+  //       const res = await axios.get(
+  //         `${process.env.NEXT_PUBLIC_MEMBERSHIP_API_URL}/payment/getFinalPaymentStatus?txnid=${txnId}`,
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${token}`,
+  //             "Content-Type": "application/json",
+  //           },
+  //         }
+  //       );
+
+  //       const result = res?.data?.result?.[0];
+  //       setTransactionData(result);
+
+  //       const status = result?.transactionDetails?.status?.toLowerCase();
+  //       setIsPending(status === "pending");
+
+  //       setLoading(false); // ✅ Set loading false here
+  //     } catch (err) {
+  //       console.error("Failed to fetch transaction status ❌", err);
+  //       setError("Failed to fetch transaction status");
+
+  //       if (err?.response?.data?.errorCode == 1 || err?.response?.data?.errorCode == -1) {
+  //         handleSessionExpired(); // this triggers redirect
+  //         return; // ⛔ stop execution and rendering
+  //       }
+
+  //       setLoading(false); // only call this if not session expired
+  //     }
+  //   };
+
+  //   fetchTransactionStatus();
+  // }, [searchParams]);
+
   useEffect(() => {
     const txnId = searchParams.get("txnid");
     const token = localStorage.getItem("accessToken");
@@ -54,14 +108,14 @@ const Success = () => {
           ? `/membership?nccode=${transactionData?.networkClusterDetails?.networkClusterCode}`
           : "/membership"
       );
-      // router.push("/membership");
-      // setIsOpen(false);
     };
+
+    let intervalId = null;
 
     const fetchTransactionStatus = async () => {
       try {
         const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_MEMBERSHIP_API_URL}/payment/getFinalPaymentStatus?txnid=${txnId}`,
+          `https://uftw2680orcg.elred.io/payment/getFinalPaymentStatus?txnid=${txnId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -74,23 +128,42 @@ const Success = () => {
         setTransactionData(result);
 
         const status = result?.transactionDetails?.status?.toLowerCase();
-        setIsPending(status === "pending");
+        const isPending = status === "pending";
+        setIsPending(isPending);
+        setLoading(false);
 
-        setLoading(false); // ✅ Set loading false here
+        // ✅ Start polling only if pending
+        if (isPending && !intervalId) {
+          intervalId = setInterval(fetchTransactionStatus, 5000);
+        }
+
+        // ✅ Stop polling if not pending anymore
+        if (!isPending && intervalId) {
+          clearInterval(intervalId);
+        }
       } catch (err) {
         console.error("Failed to fetch transaction status ❌", err);
         setError("Failed to fetch transaction status");
 
-        if (err?.response?.data?.errorCode == 1 || err?.response?.data?.errorCode == -1) {
-          handleSessionExpired(); // this triggers redirect
-          return; // ⛔ stop execution and rendering
+        if (
+          err?.response?.data?.errorCode == 1 ||
+          err?.response?.data?.errorCode == -1
+        ) {
+          handleSessionExpired();
+          return;
         }
 
-        setLoading(false); // only call this if not session expired
+        setLoading(false);
       }
     };
 
+    // 🔁 Initial fetch
     fetchTransactionStatus();
+
+    // 🧼 Cleanup on unmount
+    return () => {
+      if (intervalId) clearInterval(intervalId);
+    };
   }, [searchParams]);
 
   const handleGoHome = () => {
