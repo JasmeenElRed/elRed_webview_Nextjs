@@ -115,7 +115,7 @@ const Success = () => {
     const fetchTransactionStatus = async () => {
       try {
         const res = await axios.get(
-          `https://uftw2680orcg.elred.io/payment/getFinalPaymentStatus?txnid=${txnId}`,
+          `${process.env.NEXT_PUBLIC_MEMBERSHIP_API_URL}/payment/getFinalPaymentStatus?txnid=${txnId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
