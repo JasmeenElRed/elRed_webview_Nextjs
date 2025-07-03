@@ -58,6 +58,8 @@ useEffect(() => {
       })
       .catch((error) => {
         console.error("Error fetching HTML:", error);
+        console.log('REFACTORING BRANCH...')
+
       });
   }, []);
 
