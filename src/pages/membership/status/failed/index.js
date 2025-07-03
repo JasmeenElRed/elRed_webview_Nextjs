@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import style from "./index.module.css";
 import Image from "next/image";
 import failed from "../../../../../public/failedLogo.svg";
+import pending from "../../../../../public/pendingLogo.svg";
 import copyIcon from "../../../../../public/copyIcon.svg";
 import { useRouter, useSearchParams } from "next/navigation";
 import withAuth from "@/hoc/withAuth";
@@ -45,6 +46,8 @@ const Failed = () => {
       // setIsOpen(false);
     };
 
+    let intervalId = null;
+
     const fetchTransactionStatus = async () => {
       try {
         const res = await axios.get(
@@ -56,13 +59,32 @@ const Failed = () => {
             },
           }
         );
-        setTransactionData(res?.data?.result?.[0]);
+
+        const result = res?.data?.result?.[0];
+        setTransactionData(result);
+
+        const status = result?.transactionDetails?.status?.toLowerCase();
+        const isPending = status === "pending";
+        setIsPending(isPending);
         setLoading(false);
+
+        // ✅ Start polling only if pending
+        if (isPending && !intervalId) {
+          intervalId = setInterval(fetchTransactionStatus, 5000);
+        }
+
+        // ✅ Stop polling if not pending anymore
+        if (!isPending && intervalId) {
+          clearInterval(intervalId);
+        }
       } catch (err) {
         console.error("Failed to fetch transaction status ❌", err);
         setError("Failed to fetch transaction status");
 
-        if (err?.response?.data?.errorCode == 1 || err?.response?.data?.errorCode == -1) {
+        if (
+          err?.response?.data?.errorCode == 1 ||
+          err?.response?.data?.errorCode == -1
+        ) {
           handleSessionExpired(); // this triggers redirect
           return; // ⛔ stop execution and rendering
         }
@@ -128,7 +150,7 @@ const Failed = () => {
             <div className={style.imgWrapper}>
               {!loaded && <div className={style.shimmer} />}
               <Image
-                src={failed}
+                src={isPending ? pending : failed}
                 alt="failed"
                 width={100}
                 height={100}
@@ -137,10 +159,14 @@ const Failed = () => {
               />
             </div>
           </div>
-          <div className={style.titleTag}>Failed</div>
+          <div className={style.titleTag}>
+            {isPending ? "Pending" : "Failed"}
+          </div>
           <div className={style.details}>
-            Your payment of Rs. {transactionData?.transactionDetails?.amount}{" "}
-            for the yearly plan is failed. Please try again.
+            {isPending
+              ? `Your payment of Rs. ${transactionData?.transactionDetails?.amount} for the yearly plan is pending now. Please avoid making a duplicate payment. Kindly check again after some time.`
+              : `Your payment of Rs. ${transactionData?.transactionDetails?.amount}{" "}
+            for the yearly plan is failed. Please try again.`}
           </div>
           <div className={style.trnsId}>Transaction ID</div>
           <div className={style.trnx}>
