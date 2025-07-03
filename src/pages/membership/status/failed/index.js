@@ -94,6 +94,11 @@ const Failed = () => {
     };
 
     fetchTransactionStatus(); // 🔁 call it immediately
+
+    // 🧼 Cleanup on unmount
+    return () => {
+      if (intervalId) clearInterval(intervalId);
+    };
   }, [searchParams]);
 
   const handleCopy = () => {
