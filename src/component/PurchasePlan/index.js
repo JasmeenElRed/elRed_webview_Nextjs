@@ -342,7 +342,7 @@ const PurchasePlan = ({ data }) => {
           {networkClusterDetails?.logo && (
             <Image
               src={networkClusterDetails.logo}
-              alt="logo"
+              alt=""
               height={66}
               width={66}
               className={style.nw_logo}
