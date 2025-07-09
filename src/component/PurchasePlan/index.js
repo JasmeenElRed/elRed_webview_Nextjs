@@ -439,7 +439,7 @@ const PurchasePlan = ({ data }) => {
       {payuFormData && (
         <form
           ref={formRef}
-          action={process.env.NEXT_PUBLIC_MEMBERSHIP_PAYU_ENV}
+          action={payuFormData?.transactionDetails?.url}
           method="post"
           style={{ display: "none" }}
         >
