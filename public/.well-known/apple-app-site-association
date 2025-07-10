@@ -28,10 +28,9 @@
             },
             {
                 "appID": "YN83UST97S.com.elredmod.one.backup",
-                "paths": [
-                    "*"
-                ]
+                "paths": [ "/shareNeed/*", "/shareLead/*", "/shareProfile/*", "/shareCard/*" ]
             }
         ]
     }
-}
+  }
+  
