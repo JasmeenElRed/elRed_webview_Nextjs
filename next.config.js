@@ -25,6 +25,11 @@ const nextConfig = {
         hostname: "assets-dev.elred.io",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "assets.elred.io",
+        pathname: "/**",
+      },
       
     ],
   },
