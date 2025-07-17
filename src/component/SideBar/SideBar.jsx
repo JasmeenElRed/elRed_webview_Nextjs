@@ -44,6 +44,8 @@ export default function SideBar() {
           fallback={avatar}
         />
 
+        {console.log(userData?.dpURL,'---->')}
+
         <div className={styles.name_div}>
           <div className={styles.username}>
             {" "}
