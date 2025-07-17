@@ -45,7 +45,7 @@ const PurchaseCompleted = ({ data, setRenew }) => {
           <span className={style.bolder_text}>
             {data?.networkClusterDetails?.name}
           </span>{" "}
-          and now you are part of this network, your subscription starts on{" "}
+          and are now part of this network, your subscription starts on{" "}
           <span className={style.bolder_text}>
             {/* {moment(data?.memberShipDetails?.subscriptionStartDate).format(
               "DD MMMM YYYY"

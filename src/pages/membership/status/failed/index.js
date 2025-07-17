@@ -252,11 +252,11 @@ const Failed = () => {
           </div>
           <div className={style.desktop_bottom_wrapper}>
             <div className={style.donot_close}>
-              Please do not click the Browser Back Button. Click the Home button
+              Please do not click the Browser Back Button. Click the {isPending ? 'Home' : 'try again'} button
               to navigate to Home.
             </div>
             <div className={style.home_btn} onClick={handleGoHome}>
-              Try Again
+             {isPending ? "Home" : "Try again"}
             </div>
           </div>
         </div>
