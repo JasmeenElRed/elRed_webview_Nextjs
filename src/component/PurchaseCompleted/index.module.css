@@ -24,12 +24,12 @@
 .inner_div {
   position: relative;
   background: #0d0d0d;
-  background-image: url("../../../public/planBGstatic.png");
+  background-image: url("../../../public/fullbg.png");
   background-size: cover;
   background-position: center;
   /* height: 100vh; */
   height: 100%;
-  max-width: 375px;
+  /* max-width: 375px; */
   margin: auto;
   color: #fff;
   display: flex;
@@ -37,6 +37,7 @@
   padding-top: 78px;
   z-index: 1;
   overflow: hidden;
+  align-items: center;
 }
 
 .inner_div::before {
@@ -66,10 +67,11 @@
   gap: 16px;
   backdrop-filter: blur(4px);
   z-index: 10;
+  width: 365px;
 }
 
 .ntw_name {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 500;
   font-family: "AvenirPro-md";
 
@@ -78,12 +80,11 @@
   text-overflow: ellipsis;
   display: block;
   flex-shrink: 1;
-  min-width: 0;         /* ← KEY FIX */
-  
+  min-width: 0; /* ← KEY FIX */
 }
 
 .ntw_type {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   font-family: "AvenirPro-regular";
   color: #e5e5e5;
@@ -103,7 +104,7 @@
 }
 
 .congrats {
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 600;
   font-family: "AvenirPro-demi";
   margin-top: 20px;
@@ -127,7 +128,7 @@
 }
 
 .count {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 700;
   font-family: "AvenirPro-bold";
   letter-spacing: 2px;
@@ -145,18 +146,24 @@
 }
 
 .text_msg {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400px;
   text-align: center;
   font-family: "AvenirPro-regular";
   color: #fff;
   letter-spacing: -0.3px;
   margin-top: 30px;
+  width: 393px;
 }
 
 .network_logo {
   border-radius: 50%;
   border: 1.35px solid #909090;
+}
+
+.success_logo{
+  width: 100px;
+  height: 100px;
 }
 
 .stickyBtnWrapper {
@@ -168,6 +175,16 @@
   max-width: 375px;
   padding: 20px;
   z-index: 999;
+  display: none;
+}
+
+.btn_wrapper {
+  width: 100%;
+  max-width: 375px;
+  padding: 20px;
+  z-index: 999;
+  margin-top: 50px;
+  font-size: 20px;
 }
 
 .stickyBtn {
@@ -206,9 +223,48 @@
   }
 
   .stickyBtnWrapper {
+    display: block;
     left: 0;
     transform: none;
     width: 100vw;
     max-width: none;
+  }
+
+  .plan_div {
+    width: unset;
+  }
+
+  .inner_div {
+    align-items: unset;
+  }
+
+  .text_msg {
+    font-size: 14px;
+    width: unset;
+  }
+
+  .btn_wrapper{
+    display: none;
+  }
+
+  .ntw_name{
+    font-size: 20px;
+  }
+
+  .ntw_type{
+    font-size: 14px;
+  }
+
+  .success_logo{
+    height: unset;
+    width: unset;
+  }
+
+  .congrats{
+    font-size: 24px;
+  }
+
+  .count{
+    font-size: 24px;
   }
 }

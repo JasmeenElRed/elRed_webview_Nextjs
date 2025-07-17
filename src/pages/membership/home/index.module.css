@@ -4,11 +4,15 @@
     format("opentype");
 }
 
+.mobile_header{
+  display: none;
+}
+
 .container_div {
   background: #0d0d0d;
-  height: 100dvh;
-  /* height: 100%; */
-  max-width: 375px;
+  /* height: 100dvh; */
+  height: 100%;
+  /* max-width: 375px; */
   margin: auto;
   color: #fff;
   flex-direction: column;
@@ -62,5 +66,8 @@
 @media (max-width: 500px) {
   .container_div {
     max-width: 100%;
+  }
+  .mobile_header{
+    display: block;
   }
 }

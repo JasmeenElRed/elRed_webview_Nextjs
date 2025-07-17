@@ -25,7 +25,7 @@ const PurchaseCompleted = ({ data, setRenew }) => {
         </div>
       </div>
       <div className={style.content_div}>
-        <Image src={successPayment} alt="success" />
+        <Image src={successPayment} alt="success" className={style.success_logo}/>
         <div className={style.congrats}>Congratulations</div>
         <div className={style.you_are}>You are now a part of</div>
         <div className={style.leafDiv}>
@@ -64,6 +64,10 @@ const PurchaseCompleted = ({ data, setRenew }) => {
             )} */}
           </span>
           .
+        </div>
+
+        <div className={style.btn_wrapper} onClick={() => setRenew(true)}>
+          <button className={style.stickyBtn}>Renew now</button>
         </div>
       </div>
       <div className={style.stickyBtnWrapper} onClick={() => setRenew(true)}>
