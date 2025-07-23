@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import styles from "./index.module.css";
+import styles from "./index.module.scss";
 import PaymentHeader from "@/component/PaymentHeader/PaymentHeader";
 import LogoutPayment from "@/component/LogoutPayment/LogoutPayment";
 import { useLogout } from "@/context/LogoutContext";

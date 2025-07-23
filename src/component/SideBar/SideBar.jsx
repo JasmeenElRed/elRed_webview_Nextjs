@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ImageWithLoaderAndFallback from "../ImageWithLoaderAndFallback/ImageWithLoaderAndFallback";
-import styles from "./sidebar.module.css";
+import styles from "./sidebar.module.scss";
 import Image from "next/image";
 import avatar from '../../../public/userprofile.svg'
 import logout from "../../../public/logout.svg";

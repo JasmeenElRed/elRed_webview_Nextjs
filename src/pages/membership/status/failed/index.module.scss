@@ -1,3 +1,5 @@
+@use '/src/styles/variables.scss' as *;
+
 @font-face {
   font-family: "AvenirPro-regular";
   src: url("../../../../assets/fonts/Avenir_Next_Pro/AvenirNextLTPro-Regular.otf")
@@ -374,7 +376,7 @@
     bottom: 0;
     /* background-color: red; */
     width: 100%;
-    max-width: 375px;
+    /* max-width: 375px; */
     padding: 20px;
     padding-top: 0;
     background-color: #0d0d0d;
@@ -383,5 +385,13 @@
 
   .donot_close {
     margin-bottom: unset;
+  }
+}
+
+@media (min-width:501px) and (max-width: $tab_size) {
+  .desktop {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }

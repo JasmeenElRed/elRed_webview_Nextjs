@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import style from "./index.module.css";
+import style from "./index.module.scss";
 import Image from "next/image";
 import success from "../../../../../public/successLogo.svg";
 import pending from "../../../../../public/pendingLogo.svg";

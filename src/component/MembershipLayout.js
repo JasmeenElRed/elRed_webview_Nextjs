@@ -7,7 +7,7 @@ const MembershipLayout = ({ children }) => {
 
   useEffect(() => {
     const handleResize = () => {
-      setShowLayout(window.innerWidth >= 500);
+      setShowLayout(window.innerWidth >= 769);
     };
 
     // Initial check
