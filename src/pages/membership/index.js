@@ -174,7 +174,7 @@ const Login = () => {
                       ? style.valid_input
                       : ""
                   }`}
-                  placeholder="Your Email ID"
+                  placeholder="Your email ID"
                   value={email}
                   onChange={(e) => {
                     const lowercaseEmail = e.target.value.toLowerCase();
@@ -229,7 +229,7 @@ const Login = () => {
                         ? style.valid_input
                         : ""
                     }`}
-                    placeholder="Your Email ID"
+                    placeholder="Your email ID"
                     value={email}
                     onChange={(e) => {
                       const lowercaseEmail = e.target.value.toLowerCase();

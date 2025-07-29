@@ -22,6 +22,11 @@
   src: url("../../assets/fonts/Avenir_Next_Pro/AvenirNextLTPro-Demi.otf")
     format("opentype");
 }
+@font-face {
+  font-family: "AvenirPro-light";
+  src: url("../../assets/fonts/Avenir_Next_Pro/AvenirNextLTPro-UltLt.otf")
+    format("opentype");
+}
 
 .inner_div {
   position: relative;
@@ -29,14 +34,13 @@
   background-image: url("../../../public/fullbg.png");
   background-size: cover;
   background-position: center;
-  /* height: 100vh; */
   height: 100%;
-  /* max-width: 375px; */
   margin: auto;
   color: #fff;
   display: flex;
   flex-direction: column;
-  padding-top: 78px;
+
+  // padding-top: 78px;
   z-index: 1;
   overflow: hidden;
   align-items: center;
@@ -61,7 +65,7 @@
 .plan_div {
   border: 1px solid #9e9e9f;
   background-color: #d6d6d624;
-  margin: 0 20px;
+  margin: 0 auto;
   padding: 16px;
   border-radius: 16px;
   display: flex;
@@ -70,6 +74,7 @@
   backdrop-filter: blur(4px);
   z-index: 10;
   width: 365px;
+
 }
 
 .ntw_name {
@@ -97,10 +102,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  // position: absolute;
+  // top: 50%;
+  // left: 50%;
+  // transform: translate(-50%, -50%);
+  margin: 0 auto;
   width: 80%;
   margin-top: 60px;
 }
@@ -203,7 +209,7 @@
 }
 
 .bolder_text {
-  font-family: "AvenirPro-demi";
+  font-family: "AvenirPro-bold";
 }
 
 .ntw_name_div {
@@ -212,8 +218,15 @@
   min-width: 0;
 }
 
+.desktop_wrap{
+  overflow: auto;
+  width: 100%;
+  padding: 50px 0;
+}
+
 @media (max-height: 700px) {
   .content_div {
+    margin: 0 auto;
     margin-top: 45px;
   }
 }
@@ -224,6 +237,10 @@
     width: 100vw;
   }
 
+  .desktop_wrap{
+    padding: unset;
+    margin-top: 78px;
+  }
   .stickyBtnWrapper {
     display: block;
     left: 0;
@@ -234,6 +251,7 @@
 
   .plan_div {
     width: unset;
+    margin: 0 20px;
   }
 
   .inner_div {

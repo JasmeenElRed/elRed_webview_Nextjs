@@ -68,6 +68,7 @@
   text-align: center;
   overflow: auto;
   padding: 40px 0;
+  /* padding-top: 78px; */
 
   /* Hide scrollbar for Chrome, Safari and Opera */
   scrollbar-width: none; /* Firefox */
@@ -132,6 +133,7 @@
 .inner_div > * {
   position: relative;
   z-index: 1;
+  width: 100%;
 }
 
 .plan_container {
@@ -241,6 +243,7 @@
   font-size: 20px;
   font-family: "AvenirPro-md";
   font-weight: 500;
+  cursor: default;
 }
 
 .nw_logo {
@@ -280,7 +283,7 @@
 @media (max-width: 500px) {
   .inner_div {
     height: unset;
-    min-height: 100vh;
+    /* min-height: 100vh; */
     padding: 20px 20px 80px;
     padding-top: 68px;
   }
@@ -325,4 +328,10 @@
     padding-top: 68px;
     min-height: 100vh;
   } */
+}
+
+@media (min-width:501px) and (max-width:768px){
+  .desktop_view{
+    padding-top: 78px;
+  }
 }

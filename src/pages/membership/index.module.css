@@ -31,6 +31,7 @@
   margin: auto;
   color: #fff;
   flex-direction: column;
+  background-size: cover;
 }
 
 .mobile_header {

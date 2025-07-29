@@ -76,20 +76,38 @@ const PurchasePlan = ({ data }) => {
     }
   }, [networkClusterDetails?.networkClusterCode]);
 
+  // const handlePayNow = () => {
+  //   setLoading(true); // Show loader before redirect
+
+  //   if (!payuFormData) {
+  //     alert("Please wait while we prepare your payment.");
+  //     return;
+  //   }
+
+  //   setTimeout(() => {
+  //     if (formRef.current) {
+  //       formRef.current.submit(); // Submit PayU form after a tick
+  //     }
+  //   }, 100); // Small delay to ensure re-render happens
+  // };
+
   const handlePayNow = () => {
+    if (loading) return; // Prevent multiple rapid clicks
+    setLoading(true); // Show loader before redirect
+  
     if (!payuFormData) {
       alert("Please wait while we prepare your payment.");
+      setLoading(false);
       return;
     }
-
-    setLoading(true); // Show loader before redirect
-
+  
     setTimeout(() => {
       if (formRef.current) {
-        formRef.current.submit(); // Submit PayU form after a tick
+        formRef.current.submit();
       }
-    }, 100); // Small delay to ensure re-render happens
+    }, 100);
   };
+  
 
   return (
     <>
@@ -244,31 +262,30 @@ const PurchasePlan = ({ data }) => {
                 ))}
               </div>
             </div>
-
           </div>
-            <div className={style.button_wrapper}>
-              <button
-                className={loading ? style.stickyBtnLoading : style.stickyBtn}
-                onClick={handlePayNow}
-                // disabled={loading}
-              >
-                {loading ? (
-                  <Spinner
-                    animation="border"
-                    className={style.submit_button_spinner}
-                  />
-                ) : (
-                  `Pay ₹${subscriptionDetails?.membershipCost} to Continue`
-                )}
-              </button>
-            </div>
+          <div className={style.button_wrapper}>
+            <button
+              className={loading ? style.stickyBtnLoading : style.stickyBtn}
+              onClick={loading ? null : handlePayNow}
+              // disabled={loading}
+            >
+              {loading ? (
+                <Spinner
+                  animation="border"
+                  className={style.submit_button_spinner}
+                />
+              ) : (
+                `Pay ₹${subscriptionDetails?.membershipCost} to Continue`
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
       <div className={style.stickyBtnWrapper}>
         <button
           className={loading ? style.stickyBtnLoading : style.stickyBtn}
-          onClick={handlePayNow}
+          onClick={loading ? null : handlePayNow}
           // disabled={loading}
         >
           {loading ? (
