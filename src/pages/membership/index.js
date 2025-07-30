@@ -162,7 +162,7 @@ const Login = () => {
               <PaymentHeader noDisplay={true} />
               <div className={style.sign_in}>Sign In</div>
               <div className={style.sign_in_text}>
-                Enter your email ID you have used to sign up on RED.
+                Enter your email ID you have used to sign up on el RED.
               </div>
               <div className={style.input_wrapper}>
                 <div className={style.phn_title}>Email ID</div>
@@ -188,7 +188,7 @@ const Login = () => {
                 )}
                 {invalidError && (
                   <div className={style.error_text}>
-                    The email is not used to create an account via the RED
+                    The email is not used to create an account via the el RED
                     app
                   </div>
                 )}
@@ -218,7 +218,7 @@ const Login = () => {
                 <Image src={logo} alt="" />
                 <div className={style.sign_in_desktop}>Sign In</div>
                 <div className={style.sign_in_text_desktop}>
-                Enter your email ID you have used to sign up on RED.
+                Enter your email ID you have used to sign up on el RED.
                 </div>
                 <div className={style.input_wrapper_desktop}>
                   <input
@@ -243,7 +243,7 @@ const Login = () => {
                   )}
                   {invalidError && (
                     <div className={style.error_text}>
-                      The email is not used to create an account via the RED
+                      The email is not used to create an account via the el RED
                       app
                     </div>
                   )}
