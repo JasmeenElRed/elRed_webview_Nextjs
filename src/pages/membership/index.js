@@ -218,7 +218,7 @@ const Login = () => {
                 <Image src={logo} alt="" />
                 <div className={style.sign_in_desktop}>Sign In</div>
                 <div className={style.sign_in_text_desktop}>
-                Enter your email ID you have used to sign up on el RED.
+                Enter your email ID you have used to sign up on <br/>el RED.
                 </div>
                 <div className={style.input_wrapper_desktop}>
                   <input
